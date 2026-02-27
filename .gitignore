@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+ap/
+env/
+
+# Large model weights — exceed GitHub 100 MB limit
+*.pth
+*.ckpt
+pretrained_models/
+
+# Raw audio data — large, not committed
+Data/
+
+# # Generated outputs — reproducible
+# Approach3/results/
+# Approach3/diagnostics/
+
+# Temporary files
+*.npy
+trials.tsv

@@ -1,0 +1,63 @@
+1. What does L2 Normalization actually do?
+Imagine a vector as an arrow pointing from the center of a graph. Some arrows might be very long (high magnitude), and some might be very short.
+
+L2 Normalization takes all these arrows and stretches or shrinks them so they all have a length of exactly 1.
+
+2. Why use it here? (3 Key Reasons)
+A. Making "Cosine Similarity" easy
+In speaker verification, we compare two voices by looking at the angle between their vectors, not the length.
+
+If the vectors are normalized to length 1, calculating the Dot Product between them is mathematically identical to calculating the Cosine Similarity.
+
+This makes the math much faster and more stable during training.
+
+B. The "Unit Hypersphere"
+By forcing every embedding to have a length of 1, you are essentially placing every speaker's "fingerprint" on the surface of a giant ball (a Unit Hypersphere).
+
+Now, the model only has to care about where on the ball the speaker is, rather than how far they are from the center.
+
+C. Stability (Preventing "Exploding" Values)
+Without normalization, a very loud audio clip might produce huge numbers in the vector, while a quiet clip might produce tiny numbers. This "loudness" has nothing to do with the speaker's identity. L2 Normalization removes the effect of "loudness/magnitude" and focuses only on the "identity/direction."
+
+--------------------------------------------------------------------------------------------------------------
+
+🔹 What Contrastive Loss does
+
+For each pair (emb1, emb2, label):
+
+Positive pair (label = 1)
+→ distance should be small
+
+Negative pair (label = 0)
+→ distance should be large (≥ margin)
+------------------------------------------------------------------------------------------------------------------
+
+
+🔹 Mathematical intuition (simple)
+
+Let:
+D = distance between embeddings
+y = label (1 = same, 0 = different)
+m = margin
+Loss:
+L = y * D²  +  (1 − y) * max(0, m − D)²
+Interpretation:
+Same speaker → penalize large distance
+Different speakers → penalize distance < margin
+📌 This directly shapes the embedding space.
+
+-------------------------------------------------------------------------------------------------------------
+max times frames is 342 so taking 400 as max time frames and padding rest with zeros
+
+--------------------------------------------------------------------------------------------------------------
+Feature,Current Project,            next Evaluation steps
+Backbone,VGGish (Audio Events),     ECAPA-TDNN (Speaker Specific)
+Loss,Contrastive Loss,              ArcFace / Angular Prototype Loss
+Input,Fixed 400 frames (pad/crop),  Dynamic length with Global Pooling
+Evaluation,Single index loop,       Full Test Split with 
+
+feature:next Evaluation steps
+backbone:ECAPA-TDNN (Speaker Specific)
+loss:ArcFace / Angular Prototype Loss
+input:Dynamic length with Global Pooling
+Evaluation:Full Test Split with 

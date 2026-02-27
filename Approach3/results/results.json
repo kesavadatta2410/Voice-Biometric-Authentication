@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-02-27T09:33:51",
+  "checkpoint": "Approach3/checkpoints/best_model.pth",
+  "num_trials": 2160,
+  "eer_pct": 5.8333,
+  "min_dcf": 0.273148,
+  "threshold_at_eer": 0.698773,
+  "p_target": 0.01
+}

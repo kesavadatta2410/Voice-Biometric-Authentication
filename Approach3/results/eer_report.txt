@@ -1,0 +1,9 @@
+==================================================
+  ECAPA-TDNN Speaker Verification — Results
+==================================================
+  EER           : 5.833%
+  minDCF        : 0.2731  (p_target=0.01)
+  Threshold@EER : 0.6988
+  Num trials    : 2160
+  Checkpoint    : Approach3/checkpoints/best_model.pth
+==================================================

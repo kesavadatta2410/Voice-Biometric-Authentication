@@ -1,0 +1,41 @@
+# config.yaml — Centralised hyperparameters for Approach3 ECAPA-TDNN
+# NOTE: these values are overridable via CLI flags in train.py
+
+model:
+  embedding_dim: 128
+  n_mels: 80              # MUST be 80 for ECAPA-TDNN
+  channels: 512           # ECAPA backbone channel width
+  attention_channels: 128 # Attentive Statistical Pooling hidden size
+
+training:
+  batch_size: 64          # Min 32 required for stable metric learning
+  epochs: 100
+  lr: 1.0e-4              # 1e-4 recommended for pretrained fine-tuning
+  warmup_epochs: 5        # Linear LR warmup before cosine annealing
+  weight_decay: 1.0e-4
+  arcface_margin: 0.5     # Angular margin m ≥ 0.3 (recommended 0.5)
+  arcface_scale: 30.0     # Feature scale s ≥ 30
+  contrastive_weight: 0.1 # Auxiliary contrastive loss weight
+  grad_clip: 1.0
+  patience: 10            # Early stopping patience (EER-based)
+  seed: 42
+
+scheduler:
+  t0: 10                  # CosineAnnealingWarmRestarts T_0
+  t_mult: 2               # Restart period multiplier
+
+data:
+  sample_rate: 16000
+  n_fft: 512
+  hop_length: 160
+  n_mels: 80
+  train_split: 0.8        # Speaker-level split (no overlap guaranteed)
+  num_pairs: 10000        # Pairs per epoch
+  num_workers: 4
+  speaker_disjoint: true  # CRITICAL: no speaker overlap between train/val
+
+evaluation:
+  p_target: 0.01          # minDCF prior target probability
+  c_miss: 1.0
+  c_fa: 1.0
+  results_dir: Approach3/results/

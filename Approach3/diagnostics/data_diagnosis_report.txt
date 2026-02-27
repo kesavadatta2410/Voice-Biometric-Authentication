@@ -1,0 +1,10 @@
+DATA PIPELINE DIAGNOSTICS
+============================================================
+Total files    : 1440
+Total speakers : 24
+
+Speaker overlap: ✅ PASS
+Utterance overlap: ✅ PASS
+Class balance  : ✅ PASS (balanced)
+Train speakers : 19
+Val speakers   : 5

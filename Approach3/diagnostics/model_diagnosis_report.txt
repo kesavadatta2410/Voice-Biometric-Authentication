@@ -1,0 +1,9 @@
+MODEL ARCHITECTURE DIAGNOSTICS
+============================================================
+Trainable params (model) : 5,399,488
+Total params (model)     : 5,399,488
+Embedding norm           : ✅ PASS (norms ≈ 1.0)
+Gradient flow            : ✅ PASS — all layers receiving gradients
+Pretrained weights       : ✅ Checkpoint loaded successfully.
+ArcFace margin status    : ✅ m ≥ 0.3
+ArcFace scale status     : ✅ s ≥ 30
